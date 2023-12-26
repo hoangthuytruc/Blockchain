@@ -2,29 +2,14 @@ package main
 
 import (
 	"Blockchain/Lab01"
-	"fmt"
-	"strconv"
-	"strings"
+	"os"
 )
 
 func main() {
+	defer os.Exit(0)
 	blockchain := Lab01.InitBlockchain()
-	blockchain.AddBlock("Fist block 1", "First block 2")
-	blockchain.AddBlock("Second block")
-	blockchain.AddBlock("Third block")
+	defer blockchain.Database.Close()
 
-	for index, block := range blockchain.Blocks {
-		fmt.Printf("The block at %d\n", index)
-		fmt.Printf("Timestamp: %d\n", block.Timestamp)
-		var data []string
-		for _, tx := range block.Transactions {
-			data = append(data, string(tx.Data))
-		}
-		fmt.Printf("Transactions: %s\n", strings.Join(data, ", "))
-		fmt.Printf("Previous hash: %x\n", block.PrevBlockHash)
-		fmt.Printf("Hash: %x\n", block.Hash)
-		pow := Lab01.NewProof(block)
-		fmt.Printf("PoW: %s\n", strconv.FormatBool(pow.Validate()))
-		fmt.Println()
-	}
+	cli := Lab01.CommandLine{blockchain}
+	cli.Run()
 }
