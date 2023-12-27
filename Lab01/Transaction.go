@@ -94,3 +94,15 @@ func (in *TxInput) CanUnlock(data string) bool {
 func (out *TxOutput) CanBeUnlocked(data string) bool {
 	return out.PubKey == data
 }
+
+func (tx Transaction) Serialize() []byte {
+	var encoded bytes.Buffer
+
+	enc := gob.NewEncoder(&encoded)
+	err := enc.Encode(tx)
+	if err != nil {
+		log.Panic(err)
+	}
+
+	return encoded.Bytes()
+}
