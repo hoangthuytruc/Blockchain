@@ -29,9 +29,9 @@ func (b *Block) HashTransactions() []byte {
 	for _, tx := range b.Transactions {
 		txHashes = append(txHashes, tx.Serialize())
 	}
-	tree := NewMerkleTree(txHashes)
+	tree := NewMerkleTree(txHashes, DefaultShaHasher)
 
-	return tree.RootNode.Data
+	return tree.Root.Data
 }
 
 func (b *Block) SetHash() {
