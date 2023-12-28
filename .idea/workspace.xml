@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e82dd501-0104-49bf-8264-f4d5a918736c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Lab01/Block.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab01/Blockchain.go" beforeDir="false" afterPath="$PROJECT_DIR$/Lab01/Blockchain.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
