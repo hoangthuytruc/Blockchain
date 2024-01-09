@@ -20,6 +20,7 @@ type Block struct {
 	Transactions  []*Transaction
 	PrevBlockHash []byte
 	Hash          []byte
+	Nonce         int
 }
 
 func Int64ToBytes(n int64) []byte {
@@ -54,8 +55,21 @@ func CreateBlock(data []string, prevHash []byte) *Block {
 	for _, item := range data {
 		transactions = append(transactions, &Transaction{[]byte(item)})
 	}
-	block := &Block{time.Now().UnixNano(), transactions, prevHash, []byte{}}
-	block.SetHash()
+	block := &Block{
+		time.Now().UnixNano(),
+		transactions,
+		prevHash,
+		[]byte{},
+		0,
+	}
+	pow := NewProof(block)
+	nonce, hash := pow.Run()
+
+	block.Nonce = nonce
+	block.Hash = hash
+
+	//block.SetHash()
+
 	return block
 }
 
